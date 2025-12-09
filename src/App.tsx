@@ -16,6 +16,10 @@ const todosInit = todosFromServer.map(todo => ({
 }));
 
 function getNewTodoId(todos: Todo[]): number {
+  if (todos.length === 0) {
+    return 1;
+  }
+
   const maxId = Math.max(...todos.map(todo => todo.id));
 
   return maxId + 1;
@@ -49,7 +53,7 @@ export const App = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    setHasTitleError(!title);
+    setHasTitleError(!title.trim());
     setHasUserIdError(!userId);
 
     if (!title.trim() || !userId) {
