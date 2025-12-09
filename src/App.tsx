@@ -16,7 +16,7 @@ const todosInit = todosFromServer.map(todo => ({
 }));
 
 function getNewTodoId(todos: Todo[]): number {
-  const maxId = Math.max(...todos.map(x => x.id));
+  const maxId = Math.max(...todos.map(todo => todo.id));
 
   return maxId + 1;
 }
@@ -69,12 +69,12 @@ export const App = () => {
 
   const handleUserIdChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setUserId(+event.target.value);
-    setHasUserIdError(!userId);
+    setHasUserIdError(false);
   };
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
-    setHasTitleError(!title);
+    setHasTitleError(false);
   };
 
   return (
